@@ -4,7 +4,8 @@ pipeline {
         choice(name: 'GOAL', choices: ['compile', 'package', 'clean package', 'clean'])
     }
     stages {
-        stage('Build the Code and sonarqube-analysis') {
+        /*stage('Build the Code and sonarqube-analysis') {
+            agent { label 'buildtool' }
             steps {
 //withSonarQubeEnv('sonar') here name will which integrated in jenkins configuration
                 withSonarQubeEnv('sonar') {
@@ -16,14 +17,15 @@ pipeline {
             steps {
                 junit testResults: 'target/surefire-reports/*.xml'
             }
-        }
+        }*/
         stage('build docker image'){
-          agent { label 'docker' }
+          agent { label 'test_docker' }
           steps {
               sh 'docker build -t spring-petclinic:$BUILD_NUMBER'
             }
         }
         stage('Pushing Image to DockerHub with Versioning') {
+            agent { label 'test_docker' }
             steps {
                    withCredentials([usernamePassword(credentialsId: 'jfrog', passwordVariable: 'jPassword', usernameVariable: 'jUser')]) {
                    sh "docker login -u ${env.jUser} -p ${env.jPassword}"
