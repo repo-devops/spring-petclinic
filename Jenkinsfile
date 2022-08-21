@@ -21,7 +21,7 @@ pipeline {
         stage('build docker image'){
           agent { label 'test_docker' }
           steps {
-              sh 'docker docker image build -t spring-petclinic:$BUILD_NUMBER .'
+              sh 'docker image build -t spring-petclinic:$BUILD_NUMBER .'
             }
         }
         stage('Pushing Image to DockerHub with Versioning') {
