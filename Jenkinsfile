@@ -10,6 +10,7 @@ pipeline {
         string defaultValue: 'devops123', description: 'jfrog repo Name', name: 'image_repo', trim: true
     }
     stages {
+        /*
         stage('Git'){
             steps{
                 git branch: 'main', url: 'https://github.com/repo-devops/spring-petclinic.git'
@@ -22,7 +23,7 @@ pipeline {
                     extensions: [],
                     userRemoteConfigs: [[url: 'https://github.com/repo-devops/spring-petclinic.git']]])
             }
-        }
+        }*/
         stage('Build the Code and sonarqube-analysis') {
             steps {
                 when { expression { params.GOAL != 'none' } }
