@@ -19,7 +19,6 @@ pipeline {
             }
         }*/
         stage('build docker image'){
-          agent { label 'test_docker' }
           steps {
               sh "echo '$JOB_NAME'"
               sh 'docker image build -t spring-petclinic:$BUILD_NUMBER .'
