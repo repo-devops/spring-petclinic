@@ -12,11 +12,10 @@ pipeline {
                     sh "mvn ${params.GOAL}"
                 }
             }
-        }*/
+        }
         stage('reporting') {
             steps {
              echo "hi"
-               // junit testResults: 'target/surefire-reports/*.xml'
             }
         }
     }
