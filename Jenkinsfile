@@ -10,7 +10,6 @@ pipeline {
 //withSonarQubeEnv('sonar') here name will which integrated in jenkins configuration
                 //withSonarQubeEnv('sonar') {
                     sh "mvn ${params.GOAL}"
-                }
             }
         }
         stage('reporting') {
